@@ -1,0 +1,139 @@
+/* ── Hero 3D Character Component ─────────────────────────── */
+
+.photo-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  max-width: 90vw;
+  height: 94%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* 3D Character image */
+.hero-photo {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  /* Fade out bottom so character blends into dark background */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 55%,
+    transparent 95%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 55%,
+    transparent 95%
+  );
+  /* Slight boost to make it pop against the dark bg */
+  filter: contrast(1.04) brightness(1.05) saturate(1.1);
+  animation: photoReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+  animation-delay: 0.4s;
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes photoReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+/* Purple glow ring — simulates the backlight from the monitor */
+.photo-glow-ring {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center bottom,
+    rgba(180, 100, 255, 0.5) 0%,
+    rgba(130, 60, 220, 0.28) 40%,
+    transparent 70%
+  );
+  filter: blur(32px);
+  z-index: 1;
+  animation: pulseGlow 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseGlow {
+  0%,  100% { opacity: 0.65; transform: translateX(-50%) scaleX(1);    }
+  50%        { opacity: 1;    transform: translateX(-50%) scaleX(1.08); }
+}
+
+/* Fade the very bottom into the page background */
+.photo-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: linear-gradient(
+    to top,
+    var(--backgroundColor) 35%,
+    transparent 100%
+  );
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media screen and (max-width: 768px) {
+  .photo-wrapper {
+    width: 340px;
+    height: 78%;
+  }
+  .photo-glow-ring {
+    height: 240px;
+    width: 90%;
+  }
+  .photo-bottom-fade {
+    height: 160px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .photo-wrapper {
+    width: 280px;
+    height: 70%;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .photo-wrapper {
+    width: 560px;
+    height: 95%;
+  }
+  .photo-glow-ring {
+    height: 430px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .photo-wrapper {
+    width: 660px;
+  }
+  .photo-glow-ring {
+    height: 500px;
+  }
+}

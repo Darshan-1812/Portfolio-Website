@@ -174,9 +174,16 @@
   margin: 0;
   letter-spacing: 2px;
   font-size: 28px;
-  line-height: 28px;
+  line-height: 1.1;
   font-weight: 500;
   font-family: "Geist", sans-serif;
+  white-space: nowrap;
+}
+
+/* Each word of the name on its own line */
+.name-word {
+  display: block;
+  line-height: 1;
 }
 
 /* .landing-intro h1 span {
@@ -258,8 +265,7 @@ h2.landing-info-h2 {
     font-size: 18px;
   }
   .landing-intro h1 {
-    font-size: 30px;
-    line-height: 30px;
+    font-size: 42px;
   }
   .landing-info h2 {
     font-size: 35px;
@@ -277,8 +283,7 @@ h2.landing-info-h2 {
     font-size: 25px;
   }
   .landing-intro h1 {
-    font-size: 40px;
-    line-height: 35px;
+    font-size: 58px;
   }
   .landing-info h3 {
     font-size: 25px;
@@ -295,8 +300,10 @@ h2.landing-info-h2 {
   .character-model {
     height: 100vh;
     bottom: 0;
-    z-index: 11;
-    position: fixed;
+    z-index: 2;
+    /* Use absolute so it stays inside the landing section
+       and does NOT overlap the About/Career sections on scroll */
+    position: absolute;
   }
   .character-model::after,
   .character-model::before {
@@ -342,8 +349,7 @@ h2.landing-info-h2 {
     font-size: 35px;
   }
   .landing-intro h1 {
-    font-size: 60px;
-    line-height: 55px;
+    font-size: 80px;
   }
   .landing-info h3 {
     font-size: 35px;

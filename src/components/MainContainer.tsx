@@ -30,28 +30,25 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   }, [isDesktopView]);
 
   return (
-    <div className="container-main">
+    // smooth-wrapper / smooth-content kept as class names for CSS compatibility
+    // but ScrollSmoother is replaced by native CSS scroll-behavior
+    <div className="container-main" id="smooth-wrapper">
       <Cursor />
       <Navbar />
       <SocialIcons />
-      {isDesktopView && children}
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <div className="container-main">
-            <Landing>{!isDesktopView && children}</Landing>
-            <About />
-            <WhatIDo />
-            <Career />
-            <Work />
-            {isDesktopView && (
-              <Suspense fallback={<div>Loading....</div>}>
-                <TechStack />
-              </Suspense>
-            )}
-            <Contact />
-          </div>
-        </div>
-      </div>
+      <main id="smooth-content">
+        <Landing>{children}</Landing>
+        <About />
+        <WhatIDo />
+        <Career />
+        <Work />
+        {isDesktopView && (
+          <Suspense fallback={<div>Loading....</div>}>
+            <TechStack />
+          </Suspense>
+        )}
+        <Contact />
+      </main>
     </div>
   );
 };

@@ -214,3 +214,95 @@
     justify-content: left;
   }
 }
+
+/* Achievements & Certificates */
+.career-achievements {
+  margin-top: 80px;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.career-achievements h3 {
+  font-size: 42px;
+  font-weight: 400;
+  margin-bottom: 40px;
+  background: linear-gradient(0deg, #7f40ff, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.career-achievements h3 > span {
+  font-family: "Geist", sans-serif;
+  font-weight: 300;
+}
+
+.career-achievements ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.career-achievements li {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px 24px;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.career-achievements li:hover {
+  border-color: rgba(170, 66, 255, 0.4);
+  background: rgba(170, 66, 255, 0.05);
+}
+
+.career-ach-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.career-achievements li div {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #c0bfbf;
+}
+
+.career-achievements li strong {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.career-achievements li em {
+  color: var(--accentColor);
+  font-style: normal;
+}
+
+@media only screen and (max-width: 900px) {
+  .career-achievements {
+    margin-top: 40px;
+  }
+  .career-achievements h3 {
+    font-size: 32px;
+  }
+  .career-achievements li div {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .career-achievements h3 {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+}

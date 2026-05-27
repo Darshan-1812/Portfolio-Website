@@ -19,12 +19,27 @@ export const LoadingProvider = ({ children }: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loading, setLoading] = useState(0);
 
+  // Since there's no 3D model to load, auto-ramp to 100 quickly
+  useEffect(() => {
+    let pct = 0;
+    const interval = setInterval(() => {
+      pct += Math.floor(Math.random() * 12) + 5;
+      if (pct >= 100) {
+        pct = 100;
+        setLoading(100);
+        clearInterval(interval);
+      } else {
+        setLoading(pct);
+      }
+    }, 60);
+    return () => clearInterval(interval);
+  }, []);
+
   const value = {
     isLoading,
     setIsLoading,
     setLoading,
   };
-  useEffect(() => {}, [loading]);
 
   return (
     <LoadingContext.Provider value={value as LoadingType}>

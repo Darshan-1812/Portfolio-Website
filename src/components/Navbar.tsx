@@ -2,55 +2,50 @@ import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
 import "./styles/Navbar.css";
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
-export let smoother: ScrollSmoother;
+gsap.registerPlugin(ScrollTrigger);
+
+// Stub to keep initialFX.ts happy — ScrollSmoother replaced by native scroll
+export const smoother = {
+  paused: (_v: boolean) => {},
+  scrollTo: (_target: string, _smooth: boolean, _pos: string) => {},
+  scrollTop: (_v: number) => {},
+};
 
 const Navbar = () => {
   useEffect(() => {
-    smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
-      effects: true,
-      autoResize: true,
-      ignoreMobileResize: true,
-    });
-
-    smoother.scrollTop(0);
-    smoother.paused(true);
+    // Enable native smooth scroll
+    document.documentElement.style.scrollBehavior = "smooth";
 
     let links = document.querySelectorAll(".header ul a");
     links.forEach((elem) => {
       let element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
-        if (window.innerWidth > 1024) {
+        const href = element.getAttribute("data-href");
+        if (href) {
           e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
-          smoother.scrollTo(section, true, "top top");
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
         }
       });
     });
-    window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
-    });
   }, []);
+
   return (
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          Logo
+          DG
         </a>
         <a
-          href="mailto:example@mail.com"
+          href="mailto:darshangirase18@gmail.com"
           className="navbar-connect"
           data-cursor="disable"
         >
-          example@mail.com
+          darshangirase18@gmail.com
         </a>
         <ul>
           <li>
